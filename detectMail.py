@@ -1,5 +1,5 @@
-# credit for the majority of this script goes to Adrian Rosebrock (https://github.com/jrosebr1)
-#my implementation --> test with my raspberry pi and combine with breadboard LEDs and email script
+# credit to Adrian Rosebrock (https://github.com/jrosebr1)
+#my adaptation: test with my raspberry pi and combine with breadboard LEDs and email script
 ##################################################################################################
 
 #import packages used in program
