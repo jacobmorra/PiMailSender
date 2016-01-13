@@ -28,17 +28,31 @@ sent = 0
 
 ## This while loop constantly looks for button input (presses)
 while True:
- 
+    GPIO.output(11,GPIO.HIGH) #LED on indicating no email sent yet
     ## When state toggle button is pressed
     if ( GPIO.input(16) == True ):
  
-        ########################SEND EMAIL################################
-		
-		##################################################################
-		if (sent):
-			GPIO.output(7, GPIO.HIGH) ## LED on.. indicates email sent
-            GPIO.output(11, GPIO.LOW) ## LED off
-            print 
-		else:
-			GPIO.output(7, GPIO.LOW) ## LED off
-            GPIO.output(11, GPIO.HIGH) ## LED on.. indicates email not sent
+ 	########################SEND EMAIL################################
+	import smtplib
+	
+	author = 'yourpi_cam@email.com'
+	recipient = ['muyemail@email.com']
+	
+	message = """From: From author
+	To: To recipient
+	Subject: An intruder has been found
+	This message is to inform you that someone has been caught by our camera"""
+	
+	try:
+	smtpObj = smtplib.SMTP('localhost')
+	smtpObj.sendmail(sender, receivers, message)         
+	print "Successfully sent email"
+	except SMTPException:
+	print "Error: unable to send email"			
+    ##################################################################
+	if (sent):
+		GPIO.output(7, GPIO.HIGH) ## LED on.. indicates email sent
+    		GPIO.output(11, GPIO.LOW) ## LED off
+	else:
+		GPIO.output(7, GPIO.LOW) ## LED off
+
